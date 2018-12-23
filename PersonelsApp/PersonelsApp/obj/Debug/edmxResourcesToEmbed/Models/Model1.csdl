@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Departman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personels" Relationship="Self.FK_Personels_Departmen" FromRole="Departmans" ToRole="Personels" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Yas" Type="Byte" />
+    <Property Name="Maas" Type="Int16" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Cinsiyet" Type="Boolean" Nullable="false" />
+    <Property Name="EvliMi" Type="Boolean" Nullable="false" />
+    <Property Name="DepartmanId" Type="Int32" />
+    <NavigationProperty Name="Departman" Relationship="Self.FK_Personels_Departmen" FromRole="Personels" ToRole="Departmans" />
+  </EntityType>
+  <Association Name="FK_Personels_Departmen">
+    <End Role="Departmans" Type="Self.Departman" Multiplicity="0..1" />
+    <End Role="Personels" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departmans">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personels">
+        <PropertyRef Name="DepartmanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departmans" EntityType="Self.Departman" />
+    <EntitySet Name="Personels" EntityType="Self.Personel" />
+    <AssociationSet Name="FK_Personels_Departmen" Association="Self.FK_Personels_Departmen">
+      <End Role="Departmans" EntitySet="Departmans" />
+      <End Role="Personels" EntitySet="Personels" />
+    </AssociationSet>
+    <EntitySet Name="Kullanici" EntityType="PersonelDBModel.Kullanici" />
+  </EntityContainer>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rol" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

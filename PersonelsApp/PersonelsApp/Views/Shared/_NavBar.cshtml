@@ -1,0 +1,15 @@
+﻿
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">PersonellerApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/Home/Index">Anasayfa <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/Departman/Index">Departmanlar</a>
+            <a class="nav-item nav-link" href="/Personel/Index">Personeller</a>
+            <span class="nav-item nav-link active">| Toplam Personel Gideri: <span style="font-weight:bold">@{Html.RenderAction("ToplamMaas", "Personel");}</span></span>
+        </div>
+    </div>
+</nav>

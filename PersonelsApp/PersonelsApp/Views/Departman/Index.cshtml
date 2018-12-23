@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PersonelsApp.Models.Departman>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoud.cshtml";
+}
+
+<a href="/Departman/Yeni" class="btn btn-success" style="margin-bottom:10px">Yeni Departman</a>
+
+<h2>Departman Listesi</h2>
+
+<table class="table" id="tblDepartmanlar">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th scope="col">Id</th>
+            <th scope="col">Ad</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row"></th>
+                <td>@item.Id</td>
+                <td>@item.Ad</td>
+                <td><a href="/Departman/Guncelle/@item.Id" class="btn btn-outline-warning">Güncelle</a></td>
+                <td><a class="btn btn-outline-danger btnDepartmanSil" data-id="@item.Id">Sil</a></td> <!-- silme işlemini ajax ile yapıyoruz. ajax kodları custom.js de -->
+                @*<td>@Html.ActionLink("Personelleri Göster","PersonelleriListele","Personel", new { id=item.Id }, new { @class="btn btn-primary" })</td>*@
+                <td>@Ajax.ActionLink("Personelleri Göster", "_PersonelleriListele", "Personel", new { id = item.Id }, new AjaxOptions { HttpMethod="GET", UpdateTargetId= "personeller" } , new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div class="col-md-12" id="personeller"></div>

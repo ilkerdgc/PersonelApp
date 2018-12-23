@@ -1,0 +1,31 @@
+﻿@using System.Web.Optimization
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layoud</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        @Html.Partial("_NavBar")
+    </div>
+    <div class="container" style="margin-top:10px">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/scripts")
+
+    @RenderSection("scripts", false)
+</body>
+</html>

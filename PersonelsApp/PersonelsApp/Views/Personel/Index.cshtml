@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PersonelsApp.Models.Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoud.cshtml";
+}
+
+<a href="/Personel/Yeni" class="btn btn-success" style="margin-bottom:10px">Yeni Personel</a>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th scope="col">Id</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Yaş</th>
+            <th scope="col">Maaş</th>
+            <th scope="col">Doğum Tarihi</th>
+            <th scope="col">Cinsiyet</th>
+            <th scope="col">Medeni Durum</th>
+            <th scope="col">Departman</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row"></th>
+            <td>@item.Id</td>
+            <td>@item.Ad</td>
+            <td>@item.Soyad</td>
+            <td>@item.Yas</td>
+            <td>@item.Maas</td>
+            <td>@item.DogumTarihi.Value.ToString("dd-MM-yyyy")</td>
+            <td>@(item.Cinsiyet == true ? "Erkek" : "Kadın")</td>
+            <td>@(item.EvliMi == true ? "Evli" : "Bekar")</td>
+            <td>@item.Departman.Ad</td>
+            <td><a href="/Personel/Guncelle/@item.Id" class="btn btn-outline-warning">Güncelle</a></td>
+            <td><a href="/Personel/Sil/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
